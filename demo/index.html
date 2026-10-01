@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-Automate - Transformasi Digital BPR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#091540',
+                        signal: '#1B2CC1',
+                        mid: '#7692FF',
+                        sky: '#ABD2FA',
+                        bgGray: '#F4F5F7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .animate-bounce-in { animation: bounceIn 0.5s ease-out; }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .chat-bubble { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .phone-frame {
+            background: #ECE5DD;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .wa-header {
+            background: #075E54;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .wa-message {
+            max-width: 85%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .wa-bot { background: white; margin-right: auto; border-bottom-left-radius: 4px; }
+        .wa-user { background: #DCF8C6; margin-left: auto; border-bottom-right-radius: 4px; }
+        .wa-time { font-size: 11px; color: #999; margin-top: 4px; text-align: right; }
+        .tab-active { background: #1B2CC1; color: white; }
+        .scroll-smooth { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="scroll-smooth">
+
+    <!-- Hero Section -->
+    <section class="bg-navy min-h-screen flex items-center">
+        <div class="max-w-6xl mx-auto px-6 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-mid/20 text-mid px-4 py-2 rounded-full text-sm font-medium mb-6">
+                        Trusted by 50+ BPR across Indonesia
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                        Transformasi Digital BPR:<br>
+                        <span class="text-sky">Percepat Approval Kredit</span><br>
+                        & Tekan NPL.
+                    </h1>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Sistem otomatisasi terintegrasi dari WhatsApp nasabah hingga Dasbor Eksekutif. Tingkatkan efisiensi tanpa perlu menambah staf lapangan.
+                    </p>
+                    <a href="#demo" class="inline-flex items-center gap-2 bg-signal hover:bg-signal/90 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-signal/30">
+                        <span>Mulai Tur Sistem (3 Menit)</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </a>
+                    <div class="flex items-center gap-8 mt-10">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-sky">3x</div>
+                            <div class="text-sm text-gray-400">Lebih Cepat</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-sky">40%</div>
+                            <div class="text-sm text-gray-400">NPL Reduction</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-sky">24/7</div>
+                            <div class="text-sm text-gray-400">CS Coverage</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-72 h-72 bg-mid/20 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-sky/20 rounded-full blur-3xl"></div>
+                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="bg-white/10 rounded-lg p-3 flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-signal rounded-full flex items-center justify-center text-white font-bold">B</div>
+                                    <div>
+                                        <div class="text-white text-sm font-medium">Credit Copilot</div>
+                                        <div class="text-gray-400 text-xs">Active Now</div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-500/20 border border-green-500/30 rounded-lg p-3">
+                                    <div class="text-green-400 text-sm font-medium">Today's Performance</div>
+                                    <div class="text-white text-2xl font-bold mt-1">127 Inquiries</div>
+                                    <div class="text-gray-400 text-sm">+23% vs yesterday</div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-white/10 rounded-lg p-3">
+                                        <div class="text-mid text-2xl font-bold">89%</div>
+                                        <div class="text-gray-400 text-xs">Approval Rate</div>
+                                    </div>
+                                    <div class="bg-white/10 rounded-lg p-3">
+                                        <div class="text-green-400 text-2xl font-bold">94%</div>
+                                        <div class="text-gray-400 text-xs">Collection</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Masalah Section -->
+    <section class="bg-bgGray py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-navy mb-4">Apakah Ini Masalah Anda?</h2>
+                <p class="text-gray-600 text-lg">4 tantangan utama yang dihadapi BPR tradisional</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow border-l-4 border-red-500">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy mb-2">Inquiry Lambat</h3>
+                    <p class="text-gray-600 text-sm">Nasabah beralih ke pinjol karena respons simulasi manual lambat.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow border-l-4 border-orange-500">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy mb-2">Survey Inefisien</h3>
+                    <p class="text-gray-600 text-sm">Penilaian 5C memakan waktu dan sulit divalidasi instan.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow border-l-4 border-yellow-500">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy mb-2">Collection Bocor</h3>
+                    <p class="text-gray-600 text-sm">Follow-up jatuh tempo manual memicu lonjakan PAR (Portfolio At Risk).</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow border-l-4 border-purple-500">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy mb-2">Blindspot Keputusan</h3>
+                    <p class="text-gray-600 text-sm">Dasbor portofolio tidak real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solusi Section -->
+    <section class="bg-white py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-navy mb-4">Solusi B-Automate</h2>
+                <p class="text-gray-600 text-lg">4 modul terintegrasi untuk transformasi digital BPR</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-signal to-mid text-white rounded-2xl p-6 shadow-lg">
+                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Credit Copilot</h3>
+                    <p class="text-white/80 text-sm mb-4">Layanan self-service 24/7 untuk nasabah via WhatsApp.</p>
+                    <ul class="space-y-2 text-sm text-white/90">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Auto reply 24/7
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Simulasi cicilan
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Pengajuan langsung
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-mid to-sky text-navy rounded-2xl p-6 shadow-lg">
+                    <div class="w-14 h-14 bg-navy/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Mobile Survey</h3>
+                    <p class="text-navy/70 text-sm mb-4">Digitalisasi form 5C dengan kalkulasi otomatis.</p>
+                    <ul class="space-y-2 text-sm text-navy/80">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Form di HP surveyor
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Auto scoring 5C
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Upload foto lokasi
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-signal to-mid text-white rounded-2xl p-6 shadow-lg">
+                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Auto-Reminder</h3>
+                    <p class="text-white/80 text-sm mb-4">Blast notifikasi WA otomatis (H-3, H-1, Hari H).</p>
+                    <ul class="space-y-2 text-sm text-white/90">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            H-3: Pengingat awal
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            H-1: Warning
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Hari H: Escalation
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-mid to-sky text-navy rounded-2xl p-6 shadow-lg">
+                    <div class="w-14 h-14 bg-navy/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Executive Dashboard</h3>
+                    <p class="text-navy/70 text-sm mb-4">Visibilitas approval rate dan deteksi NPL.</p>
+                    <ul class="space-y-2 text-sm text-navy/80">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Real-time portfolio
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Approval rate tracking
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            NPL early warning
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="bg-bgGray py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-navy mb-4">Coba Demo Interaktif</h2>
+                <p class="text-gray-600 text-lg">Klik tabs di bawah untuk menjelajahi setiap fitur</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="showTab(1)" id="tab1" class="tab-active px-6 py-3 rounded-xl font-semibold transition-all">
+                    1. Credit Copilot
+                </button>
+                <button onclick="showTab(2)" id="tab2" class="bg-white text-navy px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all">
+                    2. Surveyor Copilot
+                </button>
+                <button onclick="showTab(3)" id="tab3" class="bg-white text-navy px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all">
+                    3. Executive Dashboard
+                </button>
+                <button onclick="showTab(4)" id="tab4" class="bg-white text-navy px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all">
+                    4. Auto-Collection
+                </button>
+            </div>
+
+            <!-- Tab 1: Credit Copilot -->
+            <div id="content1" class="tab-content">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="p-6 border-b bg-gradient-to-r from-signal to-mid text-white">
+                        <h3 class="text-xl font-bold">Credit Copilot - Simulasi WA Bot</h3>
+                        <p class="text-white/80 text-sm mt-1">Klik tombol di bawah untuk melihat simulasi chat otomatis</p>
+                    </div>
+                    <div class="p-8 flex flex-col lg:flex-row gap-8 items-center justify-center">
+                        <!-- WA Phone Frame -->
+                        <div class="phone-frame w-80">
+                            <div class="wa-header">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-signal font-bold text-lg">B</div>
+                                <div>
+                                    <div class="text-white font-semibold">B-Automate</div>
+                                    <div class="text-white/70 text-xs">online</div>
+                                </div>
+                            </div>
+                            <div id="chatArea" class="p-4 h-80 overflow-y-auto bg-[#ECE5DD]">
+                                <div class="wa-message wa-bot">
+                                    Halo! Saya asisten B-Automate. Mau tanya apa?<br><br>
+                                    Ketik atau klik topik di bawah:
+                                    <div class="wa-time">09:30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Action Buttons -->
+                        <div class="space-y-4">
+                            <button onclick="simulateChat('nasabah')" class="w-full bg-signal hover:bg-signal/90 text-white px-6 py-4 rounded-xl font-semibold transition-all hover:scale-105 flex items-center gap-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                                Simulasi Chat Nasabah
+                            </button>
+                            <button onclick="simulateChat('jt')" class="w-full bg-navy hover:bg-navy/90 text-white px-6 py-4 rounded-xl font-semibold transition-all hover:scale-105 flex items-center gap-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Simulasi Chat Jatuh Tempo
+                            </button>
+                            <button onclick="resetChat()" class="w-full border-2 border-gray-300 text-gray-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all">
+                                Reset Chat
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Surveyor Copilot -->
+            <div id="content2" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="p-6 border-b bg-gradient-to-r from-signal to-mid text-white">
+                        <h3 class="text-xl font-bold">Surveyor Copilot - Form Observasi Lapangan</h3>
+                        <p class="text-white/80 text-sm mt-1">Isi form di bawah saat melakukan kunjungan lapangan, lalu kirim untuk dianalisis AI</p>
+                    </div>
+                    <div class="p-6 lg:p-8">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-navy mb-2">Nama Nasabah</label>
+                                <input type="text" id="sNama" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-signal focus:ring-0 text-navy" placeholder="Sesuai KTP">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-navy mb-2">Sektor Usaha</label>
+                                <select id="sSektor" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-signal focus:ring-0 text-navy">
+                                    <option value="">Pilih Sektor...</option>
+                                    <option value="warung">Perdagangan (Warung Sembako)</option>
+                                    <option value="kuliner">Kuliner / Rumah Makan</option>
+                                    <option value="jasa">Jasa (Laundry, Salon, dll)</option>
+                                    <option value="peternakan">Peternakan</option>
+                                    <option value="pertanian">Pertanian</option>
+                                    <option value="mart">Minimarket</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-navy mb-2">Plafon Pengajuan</label>
+                                <select id="sPlafon" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-signal focus:ring-0 text-navy">
+                                    <option value="">Pilih Plafon...</option>
+                                    <option value="5">Rp 5.000.000</option>
+                                    <option value="10">Rp 10.000.000</option>
+                                    <option value="15">Rp 15.000.000</option>
+                                    <option value="20">Rp 20.000.000</option>
+                                    <option value="25">Rp 25.000.000</option>
+                                    <option value="50">Rp 50.000.000</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-navy mb-2">Taksiran Omzet/Bulan</label>
+                                <input type="text" id="sOmzet" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-signal focus:ring-0 text-navy" placeholder="Contoh: Rp 15.000.000">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-navy mb-2">Taksiran Nilai Agunan</label>
+                                <input type="text" id="sAgunan" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-signal focus:ring-0 text-navy" placeholder="Contoh: Rp 50.000.000">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-navy mb-2">Jenis Agunan</label>
+                                <select id="sJenisAgunan" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-signal focus:ring-0 text-navy">
+                                    <option value="">Pilih...</option>
+                                    <option value="shm">SHM (Sertifikat Tanah)</option>
+                                    <option value="shgb">SHGB (Sertifikat Bangunan)</option>
+                                    <option value="bpkb_mobil">BPKB Mobil</option>
+                                    <option value="bpkb_motor">BPKB Motor</option>
+                                    <option value="emas">Tabungan Emas</option>
+                                    <option value="tanpa">Tanpa Agunan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Catatan Observasi - The Crucial Part -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold text-navy mb-2">
+                                📝 Catatan Observasi Lapangan
+                                <span class="text-red-500 text-xs ml-1">*Wajib diisi</span>
+                            </label>
+                            <textarea id="sCatatan" rows="6" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-signal focus:ring-0 text-navy resize-none" placeholder="Tulis observasi Anda saat di lokasi...
+
+Contoh:
+- Kondisi lokasi usaha
+- Keadaan bangunan/tempat usaha
+- Perilaku dan kooperatif tidaknya pemohon
+- Status kepemilikan aset/agunan
+- Lainnya..."></textarea>
+                            <p class="text-xs text-gray-400 mt-1">Catatan akan dianalisis oleh AI Copilot untuk mendeteksi risiko dan kekuatan</p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 items-stretch">
+                            <button onclick="autoFillSurveyor()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-navy px-6 py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                </svg>
+                                Isi Data Dummy (Auto-Fill)
+                            </button>
+                            <button onclick="sendToAI()" class="flex-[2] bg-signal hover:bg-signal/90 text-white px-8 py-4 rounded-xl font-bold transition-all hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-signal/30">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                                Kirim Laporan & Analisis dengan AI
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Executive Dashboard -->
+            <div id="content3" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-xl font-bold text-navy">Executive Dashboard & AI Risk Analysis</h3>
+                        <p class="text-gray-500 text-sm mt-1">3 Pengajuan Pending Review - Generated by AI Copilot</p>
+                    </div>
+                    <div class="p-6 lg:p-8">
+
+                        <!-- Table Header -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="border-b bg-bgGray">
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Applicant</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Plafon</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">DSR</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">LTV</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Risk Profile</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">AI Analysis</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="applicantTableBody">
+                                    <!-- Row 1: Budi Santoso -->
+                                    <tr class="border-b hover:bg-bgGray/50">
+                                        <td class="py-4 px-4">
+                                            <div class="font-semibold text-navy">Budi Santoso</div>
+                                            <div class="text-sm text-gray-500">Warung Sembako</div>
+                                        </td>
+                                        <td class="py-4 px-4 font-semibold">Rp 20.000.000</td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-green-600 font-bold">35%</span>
+                                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Aman</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-green-600 font-bold">40%</span>
+                                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Aman</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">⚠️ Pending</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="text-xs space-y-1">
+                                                <div class="text-green-600">✓ Arus kas stabil</div>
+                                                <div class="text-green-600">✓ Nasabah kooperatif</div>
+                                                <div class="text-red-500">⚠️ BPKB beda nama</div>
+                                                <div class="text-red-500">⚠️ Sewa tempat</div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <button onclick="alert('Surat Kuasa dari adik diperlukan')" class="bg-signal text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-signal/90 mr-2">Doc</button>
+                                            <button onclick="alert('Disetujui Rp 20jt')" class="border border-green-500 text-green-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-50">Approve</button>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 2: Siti Aminah -->
+                                    <tr class="border-b hover:bg-bgGray/50">
+                                        <td class="py-4 px-4">
+                                            <div class="font-semibold text-navy">Siti Aminah</div>
+                                            <div class="text-sm text-gray-500">Los Pasar Tradisional</div>
+                                        </td>
+                                        <td class="py-4 px-4 font-semibold">Rp 10.000.000</td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-green-600 font-bold">25%</span>
+                                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Aman</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-yellow-600 font-bold">83%</span>
+                                            <span class="ml-2 text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">Warning</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">⚠️ Review</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="text-xs space-y-1">
+                                                <div class="text-green-600">✓ Riwayat baik</div>
+                                                <div class="text-green-600">✓ Kas cepat</div>
+                                                <div class="text-yellow-600">⚠️ LTV tinggi</div>
+                                                <div class="text-yellow-600">⚠️ Motor tua</div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <button onclick="alert('Disetujui - Character excellent')" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700">Approve</button>
+                                        </td>
+                                    </tr>
+                                    <!-- Row 3: Agus Mulyono -->
+                                    <tr class="hover:bg-bgGray/50">
+                                        <td class="py-4 px-4">
+                                            <div class="font-semibold text-navy">Agus Mulyono</div>
+                                            <div class="text-sm text-gray-500">Budidaya Lele</div>
+                                        </td>
+                                        <td class="py-4 px-4 font-semibold">Rp 35.000.000</td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-green-600 font-bold">30%</span>
+                                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Aman</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-green-600 font-bold">23%</span>
+                                            <span class="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Aman</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">✅ Low Risk</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="text-xs space-y-1">
+                                                <div class="text-green-600">✓ SHM sangat aman</div>
+                                                <div class="text-green-600">✓ LTV excellent</div>
+                                                <div class="text-yellow-600">⚠️ Risiko cuaca</div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <button onclick="alert('Disetujui dengan syarat monitoring')" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700">Approve</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Summary Stats -->
+                        <div class="grid grid-cols-4 gap-4 mt-8">
+                            <div class="bg-bgGray rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-navy">3</div>
+                                <div class="text-sm text-gray-500">Total Pengajuan</div>
+                            </div>
+                            <div class="bg-green-50 rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-green-600">1</div>
+                                <div class="text-sm text-gray-600">Low Risk</div>
+                            </div>
+                            <div class="bg-yellow-50 rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-yellow-600">2</div>
+                                <div class="text-sm text-gray-600">Pending Review</div>
+                            </div>
+                            <div class="bg-green-50 rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-green-600">2</div>
+                                <div class="text-sm text-gray-600">Siap Approve</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Auto-Collection -->
+            <div id="content4" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="p-6 border-b bg-gradient-to-r from-signal to-mid text-white">
+                        <h3 class="text-xl font-bold">Auto-Collection Tracker</h3>
+                        <p class="text-white/80 text-sm mt-1">Monitoring penagihan harian dengan auto-reminder WA</p>
+                    </div>
+                    <div class="p-8">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="border-b">
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Nama Nasabah</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Plafon</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Jatuh Tempo</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Status Bot</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-gray-600">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b hover:bg-bgGray/50">
+                                        <td class="py-4 px-4">
+                                            <div class="font-semibold text-navy">Siti Aminah</div>
+                                            <div class="text-sm text-gray-500">Cicilan ke-3 dari 12</div>
+                                        </td>
+                                        <td class="py-4 px-4 font-semibold">Rp 5.000.000</td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Besok</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 w-fit">
+                                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                                Pesan H-1 Terkirim
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <button class="text-signal hover:underline text-sm font-medium">Detail</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-bgGray/50">
+                                        <td class="py-4 px-4">
+                                            <div class="font-semibold text-navy">Rudi Hartono</div>
+                                            <div class="text-sm text-gray-500">Cicilan ke-8 dari 12</div>
+                                        </td>
+                                        <td class="py-4 px-4 font-semibold">Rp 15.000.000</td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Hari Ini</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 w-fit">
+                                                <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                                                Belum Respon
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <button class="text-signal hover:underline text-sm font-medium">Follow Up</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b hover:bg-bgGray/50">
+                                        <td class="py-4 px-4">
+                                            <div class="font-semibold text-navy">Dewi Lestari</div>
+                                            <div class="text-sm text-gray-500">Cicilan ke-5 dari 12</div>
+                                        </td>
+                                        <td class="py-4 px-4 font-semibold">Rp 8.000.000</td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">Sudah Bayar</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 w-fit">
+                                                <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+                                                Lunas
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <button class="text-signal hover:underline text-sm font-medium">Detail</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-bgGray/50">
+                                        <td class="py-4 px-4">
+                                            <div class="font-semibold text-navy">Ahmad Wijaya</div>
+                                            <div class="text-sm text-gray-500">Cicilan ke-2 dari 12</div>
+                                        </td>
+                                        <td class="py-4 px-4 font-semibold">Rp 10.000.000</td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium">+3 Hari</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 w-fit">
+                                                <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                                                Warning - Terlambat
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <button class="text-red-500 hover:underline text-sm font-medium">Escalate</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Summary Stats -->
+                        <div class="grid md:grid-cols-4 gap-4 mt-8">
+                            <div class="bg-green-50 rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-green-600">89%</div>
+                                <div class="text-sm text-gray-600">Collection Rate</div>
+                            </div>
+                            <div class="bg-yellow-50 rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-yellow-600">3</div>
+                                <div class="text-sm text-gray-600">Menunggu Response</div>
+                            </div>
+                            <div class="bg-orange-50 rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-orange-600">2</div>
+                                <div class="text-sm text-gray-600">Terlambat</div>
+                            </div>
+                            <div class="bg-red-50 rounded-xl p-4 text-center">
+                                <div class="text-2xl font-bold text-red-600">1</div>
+                                <div class="text-sm text-gray-600">Perlu Escalation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-navy py-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">Siap Transformasi Digital BPR Anda?</h2>
+            <p class="text-lg text-gray-300 mb-8">Jadwalkan demo 30 menit dengan tim kami. Gratis, tanpa komitmen.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#" class="bg-signal hover:bg-signal/90 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-signal/30">
+                    Jadwalkan Demo
+                </a>
+                <a href="#" class="border-2 border-white text-white hover:bg-white hover:text-navy px-8 py-4 rounded-xl font-semibold text-lg transition-all">
+                    Hubungi via WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-bgGray py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 B-Automate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        function showTab(tabNum) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+
+            // Show selected content
+            document.getElementById('content' + tabNum).classList.remove('hidden');
+
+            // Update tab buttons
+            document.querySelectorAll('[id^="tab"]').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('bg-white', 'text-navy');
+            });
+            document.getElementById('tab' + tabNum).classList.add('tab-active');
+            document.getElementById('tab' + tabNum).classList.remove('bg-white', 'text-navy');
+
+            // Scroll to demo section
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Chat Simulation
+        function simulateChat(type) {
+            const chatArea = document.getElementById('chatArea');
+
+            if (type === 'nasabah') {
+                addChatMessage('Mau pinjam 20 juta', 'user');
+                setTimeout(() => {
+                    addChatMessage('Terima kasih atas minatnya! 😊\n\nUntuk plafon Rp 20 juta dengan tenor 12 bulan (bunga flat 1.5%), estimasi angsuran:\n\n💰 Rp 1.966.000/bulan\n\nKetik "KTP" untuk lanjut ke pengajuan atau "HITUNG" untuk simulasi tenor lain.', 'bot');
+                }, 800);
+                setTimeout(() => {
+                    addChatMessage('KTP', 'user');
+                }, 2500);
+                setTimeout(() => {
+                    addChatMessage('Oke! Silakan input data:\n\n📋 Nama Lengkap:\n📋 NIK (16 digit):\n📋 Alamat:\n📋 No. WA:\n\nAtau ketik "SURVEY" untuk dijadwalkan survei lokasi oleh tim kami.', 'bot');
+                }, 3200);
+            } else if (type === 'jt') {
+                addChatMessage('⚠️ Reminder: Angsuran bulan ini jatuh tempo besok\n\nRp 1.000.000\nPlafon: Rp 10.000.000\n\nKetik "BAYAR" untuk konfirmasi atau "CICILAN" untuk info lengkap.', 'bot');
+                setTimeout(() => {
+                    addChatMessage('BAYAR', 'user');
+                }, 1500);
+                setTimeout(() => {
+                    addChatMessage('Terima kasih! ✅\n\nKonfirmasi pembayaran diterima.\n\n📅 Jatuh tempo: Besok\n💰 Jumlah: Rp 1.000.000\n\n若有疑问, silakan hubungi kami.', 'bot');
+                }, 2000);
+            }
+        }
+
+        function addChatMessage(text, sender) {
+            const chatArea = document.getElementById('chatArea');
+            const msg = document.createElement('div');
+            msg.className = `wa-message wa-${sender} chat-bubble`;
+            const time = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            msg.innerHTML = text.replace(/\n/g, '<br>') + `<div class="wa-time">${time}</div>`;
+            chatArea.appendChild(msg);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function resetChat() {
+            document.getElementById('chatArea').innerHTML = `
+                <div class="wa-message wa-bot">
+                    Halo! Saya asisten B-Automate. Mau tanya apa?<br><br>
+                    Ketik atau klik topik di bawah:
+                    <div class="wa-time">09:30</div>
+                </div>
+            `;
+        }
+
+        // Default Scenario (Konveksi Baju)
+        const defaultScenario = {
+            nama: 'Pak Hendra',
+            sektor: 'konveksi',
+            sektorText: 'Konveksi Baju',
+            plafon: 50,
+            omzet: 'Rp 30.000.000',
+            agunan: 'Rp 80.000.000',
+            jenisAgunan: 'shm',
+            catatan: 'Orderan lg sepi krn blm musim sekolahan, mesin jahit byk tp nganggur. SHM atas nama sendiri lokasinya masuk gang. Suami istri kerja smua disini.',
+            dsr: 45,
+            ltv: 60,
+            dsrStatus: 'Warning',
+            dsrColor: 'yellow',
+            ltvStatus: 'Aman',
+            ltvColor: 'green',
+            agunanType: 'SHM (Sertifikat Tanah)',
+            ltvStatus: 'Aman',
+            ltvColor: 'green',
+            agunanType: 'SHM (Sertifikat Tanah)',
+            statusBadge: 'yellow',
+            statusText: 'Pending Review',
+            greenFlags: [
+                'Agunan SHM atas nama sendiri (sangat liquid)',
+                'Bisnis dijalankan bersama keluarga'
+            ],
+            redFlags: [
+                'DSR tinggi (45%) karena omzet sedang turun (bisnis musiman)',
+                'Arus kas saat ini mungkin kesulitan menutup angsuran bulanan'
+            ],
+            recommendation: 'Tunda persetujuan plafon 50 Juta. Tawarkan penurunan plafon ke 30 Juta agar DSR kembali ke rasio aman (di bawah 30%), atau minta mutasi rekening 3 bulan terakhir saat musim ramai.',
+            approveText: 'Setujui Plafon Rp 50 Juta',
+            approveBtnClass: 'border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-50'
+        };
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboard(defaultScenario);
+        });
+
+        // 3 Scenarios Data
+        const scenarios = [
+            {
+                nama: 'Budi Santoso',
+                sektor: 'warung',
+                sektorText: 'Perdagangan (Warung Sembako)',
+                plafon: 20,
+                omzet: 'Rp 15.000.000',
+                agunan: 'Rp 50.000.000',
+                jenisAgunan: 'bpkb_motor',
+                catatan: 'Tadi ke warung pak Budi rame bgt pas pagi. orgnya kooperatif. tp ktnya bpkb motor atas nama adeknya yg lg kerja di jkt. warungnya nyewa bukan milik sndiri.',
+                dsr: 35,
+                ltv: 40,
+                dsrStatus: 'Aman',
+                dsrColor: 'green',
+                ltvStatus: 'Aman',
+                ltvColor: 'green',
+                agunanType: 'BPKB Motor',
+                statusBadge: 'green',
+                statusText: 'Low Risk',
+                greenFlags: [
+                    'Arus kas harian stabil (trafik tinggi)',
+                    'Nasabah kooperatif'
+                ],
+                redFlags: [
+                    'Agunan BPKB bukan atas nama pemohon (risiko sengketa hukum)',
+                    'Status tempat usaha menyewa (bukan aset tetap)'
+                ],
+                recommendation: 'Rasio keuangan aman. Namun, tahan persetujuan hingga ada Surat Kuasa bermaterai dari adik pemohon (pemilik BPKB asli).',
+                approveText: 'Setujui Plafon Rp 20 Juta',
+                approveBtnClass: 'border-2 border-signal text-signal hover:bg-signal hover:text-white'
+            },
+            {
+                nama: 'Siti Aminah',
+                sektor: 'pasar',
+                sektorText: 'Perdagangan (Los Pasar Tradisional)',
+                plafon: 10,
+                omzet: 'Rp 8.000.000',
+                agunan: 'Rp 12.000.000',
+                jenisAgunan: 'bpkb_motor_tua',
+                catatan: 'Jualan tiap pagi laku keras, perputaran uang cpt bgt. tp jaminan cuma BPKB motor butut thn 2010. orgnya jujur bgt udh langganan lama bpr kita gapernah telat.',
+                dsr: 25,
+                ltv: 83,
+                dsrStatus: 'Aman',
+                dsrColor: 'green',
+                ltvStatus: 'Warning',
+                ltvColor: 'yellow',
+                agunanType: 'BPKB Motor Tua (2010)',
+                statusBadge: 'yellow',
+                statusText: 'Pending Review',
+                greenFlags: [
+                    'Reputasi historis sangat baik (nasabah eksisting)',
+                    'Perputaran kas cepat'
+                ],
+                redFlags: [
+                    'Nilai agunan (LTV) sangat mepet dengan plafon',
+                    'Penyusutan nilai motor tinggi'
+                ],
+                recommendation: 'Setujui pengajuan karena riwayat kredit (Character) sangat baik, meskipun LTV tinggi.',
+                approveText: 'Setujui Plafon Rp 10 Juta',
+                approveBtnClass: 'bg-signal hover:bg-signal/90 text-white shadow-lg shadow-signal/30'
+            },
+            {
+                nama: 'Agus Mulyono',
+                sektor: 'peternakan',
+                sektorText: 'Peternakan (Budidaya Lele)',
+                plafon: 35,
+                omzet: 'Rp 25.000.000',
+                agunan: 'Rp 150.000.000',
+                jenisAgunan: 'shm',
+                catatan: 'Kolam lelenya ada 5 petak, pakan pke pabrikan. airnya ngambil dri sungai sbelah. kmarin sempet ada yg mati kena jamur krn ujan trs. SHM aman clean and clear.',
+                dsr: 30,
+                ltv: 23,
+                dsrStatus: 'Aman',
+                dsrColor: 'green',
+                ltvStatus: 'Aman',
+                ltvColor: 'green',
+                agunanType: 'SHM (Sertifikat Tanah)',
+                statusBadge: 'green',
+                statusText: 'Low Risk',
+                greenFlags: [
+                    'Agunan SHM sangat meng-cover pinjaman (LTV sangat aman)',
+                    'Lokasi usaha strategis dekat sungai'
+                ],
+                redFlags: [
+                    'Risiko operasional cuaca (kematian bibit lele akibat hujan terus)',
+                    'Ketergantungan pada pasokan pakan pabrikan'
+                ],
+                recommendation: 'Setujui dengan syarat pengecekan berkala pada bulan musim hujan. Risiko kredit ter-cover penuh oleh SHM.',
+                approveText: 'Setujui Plafon Rp 35 Juta',
+                approveBtnClass: 'bg-signal hover:bg-signal/90 text-white shadow-lg shadow-signal/30'
+            }
+        ];
+
+        let currentScenario = null;
+
+        // Auto Fill Form - Randomize Scenarios
+        function autoFillSurveyor() {
+            // Pick random scenario
+            const idx = Math.floor(Math.random() * scenarios.length);
+            currentScenario = scenarios[idx];
+
+            document.getElementById('sNama').value = currentScenario.nama;
+            document.getElementById('sSektor').value = currentScenario.sektor;
+            document.getElementById('sPlafon').value = currentScenario.plafon.toString();
+            document.getElementById('sOmzet').value = currentScenario.omzet;
+            document.getElementById('sAgunan').value = currentScenario.agunan;
+            document.getElementById('sJenisAgunan').value = currentScenario.jenisAgunan;
+            document.getElementById('sCatatan').value = currentScenario.catatan;
+        }
+
+        // Send to AI Analysis - Add row to table
+        function sendToAI() {
+            const nama = document.getElementById('sNama').value;
+            const catatan = document.getElementById('sCatatan').value;
+
+            if (!nama || !catatan) {
+                alert('Mohon isi minimal Nama Nasabah dan Catatan Observasi');
+                return;
+            }
+
+            // Get selected scenario
+            if (!currentScenario) {
+                currentScenario = scenarios.find(s => s.catatan === catatan) || scenarios[0];
+            }
+
+            // Add row to table
+            addApplicantRow(currentScenario, nama);
+            
+            // Clear form
+            document.getElementById('sNama').value = '';
+            document.getElementById('sSektor').value = '';
+            document.getElementById('sPlafon').value = '';
+            document.getElementById('sOmzet').value = '';
+            document.getElementById('sAgunan').value = '';
+            document.getElementById('sJenisAgunan').value = '';
+            document.getElementById('sCatatan').value = '';
+            currentScenario = null;
+
+            // Go to Tab 3
+            showTab(3);
+        }
+
+        function addApplicantRow(data, overrideNama) {
+            const tbody = document.getElementById('applicantTableBody');
+            
+            // Determine colors
+            let dsrColor = data.dsr > 40 ? 'yellow' : 'green';
+            let ltvColor = data.ltv > 70 ? 'yellow' : 'green';
+            let profile = (dsrColor === 'green' && ltvColor === 'green') ? 'Low Risk' : 'Pending';
+            let profileIcon = profile === 'Low Risk' ? '✅' : '⚠️';
+            let badgeClass = dsrColor === 'green' && ltvColor === 'green' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
+            let ready = dsrColor === 'green' && ltvColor === 'green' ? 1 : 0;
+
+            const row = document.createElement('tr');
+            row.className = 'border-b hover:bg-gray-50';
+            row.innerHTML = '<td class="py-4 px-4"><div class="font-semibold">' + (overrideNama || data.nama) + '</div><div class="text-sm text-gray-500">' + data.sektorText + '</div></td>' +
+                '<td class="py-4 px-4 font-semibold">Rp ' + data.plafon.toLocaleString('id-ID') + '.000.000</td>' +
+                '<td class="py-4 px-4"><span class="text-' + dsrColor + '-600 font-bold">' + data.dsr + '%</span> <span class="text-xs bg-' + dsrColor + '-100 text-' + dsrColor + '-700 px-2 py-0.5 rounded-full">' + data.dsrStatus + '</span></td>' +
+                '<td class="py-4 px-4"><span class="text-' + ltvColor + '-600 font-bold">' + data.ltv + '%</span> <span class="text-xs bg-' + ltvColor + '-100 text-' + ltvColor + '-700 px-2 py-0.5 rounded-full">' + data.ltvStatus + '</span></td>' +
+                '<td class="py-4 px-4"><span class="' + badgeClass + ' px-3 py-1 rounded-full text-sm font-semibold">' + profileIcon + ' ' + profile + '</span></td>' +
+                '<td class="py-4 px-4"><div class="text-xs">' +
+                data.greenFlags.map(f => '<div class="text-green-600">✓ ' + f + '</div>').join('') +
+                data.redFlags.map(f => '<div class="text-red-500">⚠️ ' + f + '</div>').join('') +
+                '</div></td>' +
+                '<td class="py-4 px-4"><button onclick="alert(\'Approve!\')" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700 mr-2">Approve</button></td>';
+            
+            tbody.appendChild(row);
+        }
+
+        // Keep updateDashboard for compatibility
+        function updateDashboard(scenario) {}
+
+    </script>
+
+</body>
+</html>
